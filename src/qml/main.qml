@@ -13,6 +13,11 @@ Item {
 
     readonly property bool debug: false
 
+    function switchToSelected() {
+        KWinComponents.Workspace.currentVirtualDesktop = cube.selectedDesktop;
+        effect.deactivate();
+    }
+
     View3D {
         id: view
         anchors.fill: parent
@@ -78,4 +83,7 @@ Item {
 
     Keys.onLeftPressed: cube.rotateToLeft();
     Keys.onRightPressed: cube.rotateToRight();
+    Keys.onEnterPressed: root.switchToSelected();
+    Keys.onReturnPressed: root.switchToSelected();
+    Keys.onSpacePressed: root.switchToSelected();
 }

@@ -1,3 +1,4 @@
+import QtQuick 2.15
 import QtQuick3D 1.15
 import org.kde.kwin 3.0 as KWinComponents
 
@@ -7,6 +8,13 @@ Node {
     property real displacement: 100
     required property size faceSize
     readonly property real baseAngle: 360 / faceRepeater.count
+    readonly property QtObject selectedDesktop: {
+        let index = Math.round(eulerRotation.y / baseAngle) % faceRepeater.count;
+        if (index < 0) {
+            index += faceRepeater.count;
+        }
+        return faceRepeater.objectAt(index).desktop;
+    }
 
     function rotateToLeft() {
         const rotation = cube.eulerRotation;
@@ -23,7 +31,7 @@ Node {
     function rotateTo(desktop) {
         const index = desktop.x11DesktopNumber - 1;
         const rotation = cube.eulerRotation;
-        rotation.y = -cube.baseAngle * index;
+        rotation.y = cube.baseAngle * index;
         cube.setEulerRotation(rotation);
     }
 
