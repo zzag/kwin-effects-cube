@@ -21,6 +21,9 @@ Item {
     property bool mouseEnabled: true
     property bool panEnabled: true
 
+    property real xMin: -20
+    property real xMax: 20
+
     readonly property bool inputsNeedProcessing: status.useMouse || status.isPanning
 
     implicitWidth: parent.width
@@ -194,6 +197,10 @@ Item {
                 if (yInvert)
                     rotateY = -rotateY;
                 rotationVector.x += rotateY;
+                if (rotationVector.x < root.xMin)
+                    rotationVector.x = root.xMin;
+                else if (rotationVector.x > root.xMax)
+                    rotationVector.x = root.xMax;
                 origin.setEulerRotation(rotationVector);
                 lastPos = currentPos;
             }
