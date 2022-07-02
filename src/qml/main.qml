@@ -5,6 +5,7 @@ import org.kde.kwin 3.0 as KWinComponents
 
 Item {
     id: root
+    focus: true
 
     required property QtObject effect
     required property QtObject targetScreen
@@ -67,4 +68,7 @@ Item {
             }
         }
     }
+
+    Keys.onLeftPressed: cube.rotateToLeft();
+    Keys.onRightPressed: cube.rotateToRight();
 }
