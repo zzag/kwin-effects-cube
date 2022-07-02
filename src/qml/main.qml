@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick3D 1.15
 import QtQuick3D.Helpers 1.15
 import org.kde.kwin 3.0 as KWinComponents
+import org.kde.plasma.core 2.0 as PlasmaCore
 
 Item {
     id: root
@@ -38,6 +39,7 @@ Item {
         }
 
         OrbitCameraController {
+            id: orbitController
             anchors.fill: parent
             origin: cube
             camera: perspectiveCamera
@@ -51,6 +53,11 @@ Item {
         Cube {
             id: cube
             faceSize: Qt.size(root.width, root.height)
+
+            Behavior on eulerRotation {
+                enabled: !orbitController.inputsNeedProcessing
+                Vector3dAnimation { duration: PlasmaCore.Units.longDuration; easing.type: Easing.InOutCubic }
+            }
         }
 
         Component.onCompleted: {
