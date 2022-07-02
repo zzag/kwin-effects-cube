@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
+add_subdirectory(kcm)
+
 add_library(kwin4_effect_cube SHARED)
 target_sources(kwin4_effect_cube PRIVATE
     cubeeffect.cpp

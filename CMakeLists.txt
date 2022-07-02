@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(kwin-effects-cube)
 
-set(KF5_MIN_VERSION "5.86.0")
+set(KF5_MIN_VERSION "5.94.0")
 set(QT_MIN_VERSION "5.15.0")
 
 set(CMAKE_CXX_STANDARD 17)
@@ -18,6 +18,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED COMPONENTS
     Core
+    DBus
     Gui
     Quick
 )
@@ -29,11 +30,14 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     GlobalAccel
     I18n
     WindowSystem
+    XmlGui
 )
 
 find_package(kwineffects REQUIRED COMPONENTS
     kwineffects
 )
+
+find_package(KWinDBusInterface CONFIG REQUIRED)
 
 add_subdirectory(src)
 

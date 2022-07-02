@@ -6,5 +6,6 @@
         "Id": "cube",
         "License": "GPL",
         "Name": "Cube"
-    }
+    },
+    "X-KDE-ConfigModule": "kwin_cube_config"
 }

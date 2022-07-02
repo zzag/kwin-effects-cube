@@ -37,7 +37,7 @@ On Fedora
 ```sh
 sudo dnf install cmake extra-cmake-modules kf5-kconfig-devel \
     kf5-kcoreaddons-devel kf5-kwindowsystem-devel kf5-globalaccel-devel \
-    kwin-devel qt5-qtbase-devel
+    kf5-xmlgui-devel kwin-devel qt5-qtbase-devel
 ```
 
 On Ubuntu
@@ -45,7 +45,7 @@ On Ubuntu
 ```sh
 sudo apt install cmake extra-cmake-modules kwin-dev \
     libkf5config-dev libkf5configwidgets-dev libkf5coreaddons-dev \
-    libkf5windowsystem-dev libkf5globalaccel-dev qtbase5-dev
+    libkf5windowsystem-dev libkf5globalaccel-dev libkf5xmlgui-dev qtbase5-dev
 ```
 
 After you installed all the required dependencies, you can build
