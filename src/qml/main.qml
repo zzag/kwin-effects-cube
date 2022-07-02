@@ -12,6 +12,7 @@ Item {
     required property QtObject targetScreen
 
     readonly property bool debug: false
+    property bool animationEnabled: false
 
     function switchToSelected() {
         KWinComponents.Workspace.currentVirtualDesktop = cube.selectedDesktop;
@@ -60,13 +61,9 @@ Item {
             faceSize: Qt.size(root.width, root.height)
 
             Behavior on eulerRotation {
-                enabled: !orbitController.inputsNeedProcessing
+                enabled: !orbitController.inputsNeedProcessing && root.animationEnabled
                 Vector3dAnimation { duration: PlasmaCore.Units.longDuration; easing.type: Easing.InOutCubic }
             }
-        }
-
-        Component.onCompleted: {
-            cube.rotateTo(KWinComponents.Workspace.currentVirtualDesktop);
         }
     }
 
@@ -86,4 +83,9 @@ Item {
     Keys.onEnterPressed: root.switchToSelected();
     Keys.onReturnPressed: root.switchToSelected();
     Keys.onSpacePressed: root.switchToSelected();
+
+    Component.onCompleted: {
+        cube.rotateTo(KWinComponents.Workspace.currentVirtualDesktop);
+        root.animationEnabled = true;
+    }
 }
