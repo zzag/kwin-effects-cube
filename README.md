@@ -5,6 +5,12 @@
 This is a basic desktop cube effect for KWin.
 
 
+## How to use it
+
+Go to desktop effect settings, and enable the Cube effect. Once you've done that,
+the Cube effect can be activated by pressing `Meta+C` shortcut.
+
+
 ## Building from Git
 
 You will need the following dependencies to build this effect:
