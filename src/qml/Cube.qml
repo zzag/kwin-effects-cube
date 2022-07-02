@@ -9,11 +9,11 @@ Node {
     readonly property real baseAngle: 360 / faceRepeater.count
 
     function rotateToLeft() {
-        cube.rotate(cube.baseAngle, Qt.vector3d(0, 1, 0), Node.LocalSpace);
+        cube.rotate(-cube.baseAngle, Qt.vector3d(0, 1, 0), Node.LocalSpace);
     }
 
     function rotateToRight() {
-        cube.rotate(-cube.baseAngle, Qt.vector3d(0, 1, 0), Node.LocalSpace);
+        cube.rotate(cube.baseAngle, Qt.vector3d(0, 1, 0), Node.LocalSpace);
     }
 
     function rotateTo(desktop) {
