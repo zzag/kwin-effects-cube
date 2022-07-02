@@ -84,6 +84,7 @@ Item {
         }
     }
 
+    Keys.onEscapePressed: effect.deactivate();
     Keys.onLeftPressed: cube.rotateToLeft();
     Keys.onRightPressed: cube.rotateToRight();
     Keys.onEnterPressed: root.switchToSelected();
