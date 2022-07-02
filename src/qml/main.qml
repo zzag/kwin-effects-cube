@@ -59,11 +59,20 @@ Item {
 
     MouseArea {
         anchors.fill: view
+        acceptedButtons: Qt.LeftButton | Qt.MiddleButton
         onClicked: {
             const result = view.pick(mouse.x, mouse.y);
             if (result.objectHit && result.objectHit.desktop) {
-                KWinComponents.Workspace.currentVirtualDesktop = result.objectHit.desktop;
-                effect.deactivate();
+                const desktop = result.objectHit.desktop;
+                switch (mouse.button) {
+                case Qt.LeftButton:
+                    KWinComponents.Workspace.currentVirtualDesktop = desktop;
+                    effect.deactivate();
+                    break;
+                case Qt.MiddleButton:
+                    KWinComponents.Workspace.removeDesktop(desktop.x11DesktopNumber - 1);
+                    break;
+                }
             }
         }
     }
