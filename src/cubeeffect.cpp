@@ -50,6 +50,7 @@ void CubeEffect::reconfigure(ReconfigureFlags)
 {
     CubeConfig::self()->read();
     setCubeFaceDisplacement(CubeConfig::cubeFaceDisplacement());
+    setDistanceFactor(CubeConfig::distanceFactor() / 100.0);
 }
 
 QVariantMap CubeEffect::initialProperties(EffectScreen *screen)
@@ -114,6 +115,19 @@ void CubeEffect::setCubeFaceDisplacement(qreal displacement)
     if (m_cubeFaceDisplacement != displacement) {
         m_cubeFaceDisplacement = displacement;
         Q_EMIT cubeFaceDisplacementChanged();
+    }
+}
+
+qreal CubeEffect::distanceFactor() const
+{
+    return m_distanceFactor;
+}
+
+void CubeEffect::setDistanceFactor(qreal factor)
+{
+    if (m_distanceFactor != factor) {
+        m_distanceFactor = factor;
+        Q_EMIT distanceFactorChanged();
     }
 }
 

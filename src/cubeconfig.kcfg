@@ -8,5 +8,8 @@
         <entry name="CubeFaceDisplacement" type="Double">
             <default>100</default>
         </entry>
+        <entry name="DistanceFactor" type="Double">
+            <default>150</default>
+        </entry>
     </group>
 </kcfg>

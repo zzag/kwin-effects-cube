@@ -17,6 +17,7 @@ class CubeEffect : public QuickSceneEffect
 {
     Q_OBJECT
     Q_PROPERTY(qreal cubeFaceDisplacement READ cubeFaceDisplacement NOTIFY cubeFaceDisplacementChanged)
+    Q_PROPERTY(qreal distanceFactor READ distanceFactor NOTIFY distanceFactorChanged)
 
 public:
     CubeEffect();
@@ -28,6 +29,9 @@ public:
     qreal cubeFaceDisplacement() const;
     void setCubeFaceDisplacement(qreal displacement);
 
+    qreal distanceFactor() const;
+    void setDistanceFactor(qreal factor);
+
 public Q_SLOTS:
     void activate();
     void deactivate();
@@ -35,6 +39,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void cubeFaceDisplacementChanged();
+    void distanceFactorChanged();
 
 protected:
     QVariantMap initialProperties(EffectScreen *screen) override;
@@ -46,6 +51,7 @@ private:
     QAction *m_toggleAction = nullptr;
     QList<QKeySequence> m_toggleShortcut;
     qreal m_cubeFaceDisplacement = 100;
+    qreal m_distanceFactor = 1.5;
 };
 
 } // namespace KWin
