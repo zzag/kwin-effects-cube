@@ -5,6 +5,7 @@
 */
 
 #include "cubeeffectkcm.h"
+#include "cubeconfig.h"
 
 #include <kwineffects_interface.h>
 
@@ -21,6 +22,7 @@ CubeEffectConfig::CubeEffectConfig(QWidget *parent, const QVariantList &args)
     : KCModule(parent, args)
 {
     ui.setupUi(this);
+    addConfig(CubeConfig::self(), this);
 
     auto actionCollection = new KActionCollection(this, QStringLiteral("kwin"));
 

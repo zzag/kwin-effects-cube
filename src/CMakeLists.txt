@@ -9,6 +9,7 @@ target_sources(kwin4_effect_cube PRIVATE
     cubeeffect.cpp
     main.cpp
 )
+kconfig_add_kcfg_files(kwin4_effect_cube cubeconfig.kcfgc)
 
 target_link_libraries(kwin4_effect_cube
     Qt::Core

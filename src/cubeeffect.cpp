@@ -5,6 +5,7 @@
 */
 
 #include "cubeeffect.h"
+#include "cubeconfig.h"
 
 #include <QAction>
 #include <QQuickItem>
@@ -43,6 +44,12 @@ CubeEffect::CubeEffect()
     setSource(QUrl::fromLocalFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kwin/effects/cube/qml/main.qml"))));
 
     reconfigure(ReconfigureAll);
+}
+
+void CubeEffect::reconfigure(ReconfigureFlags)
+{
+    CubeConfig::self()->read();
+    setCubeFaceDisplacement(CubeConfig::cubeFaceDisplacement());
 }
 
 QVariantMap CubeEffect::initialProperties(EffectScreen *screen)
@@ -95,6 +102,19 @@ void CubeEffect::deactivate()
 void CubeEffect::realDeactivate()
 {
     setRunning(false);
+}
+
+qreal CubeEffect::cubeFaceDisplacement() const
+{
+    return m_cubeFaceDisplacement;
+}
+
+void CubeEffect::setCubeFaceDisplacement(qreal displacement)
+{
+    if (m_cubeFaceDisplacement != displacement) {
+        m_cubeFaceDisplacement = displacement;
+        Q_EMIT cubeFaceDisplacementChanged();
+    }
 }
 
 } // namespace KWin

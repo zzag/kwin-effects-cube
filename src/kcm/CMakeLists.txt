@@ -7,6 +7,7 @@ ki18n_wrap_ui(kwin_cube_config_SOURCES cubeeffectkcm.ui)
 qt5_add_dbus_interface(kwin_cube_config_SOURCES ${KWIN_EFFECTS_INTERFACE} kwineffects_interface)
 
 kcoreaddons_add_plugin(kwin_cube_config INSTALL_NAMESPACE "kwin/effects/configs" SOURCES ${kwin_cube_config_SOURCES})
+kconfig_add_kcfg_files(kwin_cube_config ../cubeconfig.kcfgc)
 target_link_libraries(kwin_cube_config
     KF5::ConfigCore
     KF5::ConfigGui

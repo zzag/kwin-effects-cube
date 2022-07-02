@@ -64,6 +64,7 @@ Item {
 
         Cube {
             id: cube
+            faceDisplacement: effect.cubeFaceDisplacement
             faceSize: Qt.size(root.width, root.height)
 
             Behavior on eulerRotation {
