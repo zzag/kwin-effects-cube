@@ -63,7 +63,7 @@ Item {
             const result = view.pick(mouse.x, mouse.y);
             if (result.objectHit && result.objectHit.desktop) {
                 KWinComponents.Workspace.currentVirtualDesktop = result.objectHit.desktop;
-                effect.deactivate(0);
+                effect.deactivate();
             }
         }
     }

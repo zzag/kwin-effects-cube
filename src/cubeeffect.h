@@ -25,7 +25,7 @@ public:
 
 public Q_SLOTS:
     void activate();
-    void deactivate(int timeout);
+    void deactivate();
     void toggle();
 
 protected:

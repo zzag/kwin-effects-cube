@@ -72,7 +72,7 @@ void CubeEffect::grabbedKeyboardEvent(QKeyEvent *e)
 void CubeEffect::toggle()
 {
     if (isRunning()) {
-        deactivate(250);
+        deactivate();
     } else {
         activate();
     }
@@ -87,9 +87,9 @@ void CubeEffect::activate()
     setRunning(true);
 }
 
-void CubeEffect::deactivate(int timeout)
+void CubeEffect::deactivate()
 {
-    m_shutdownTimer->start(timeout);
+    m_shutdownTimer->start(0);
 }
 
 void CubeEffect::realDeactivate()
