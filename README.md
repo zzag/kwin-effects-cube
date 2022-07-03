@@ -11,6 +11,14 @@ impress your friends with what one can do on "Linux."
 Go to desktop effect settings, and enable the Cube effect. Once you've done that,
 the Cube effect can be activated by pressing `Meta+C` shortcut.
 
+Note that you will need at least 3 virtual desktops in order to activate the effect.
+
+Key navigation:
+
+- `Escape` - quit the effect
+- `Left` and `Right` arrow keys - rotate the cube left or right, respectively
+- `Enter`/`Space`/`Return` - switch to the currently viewed desktop
+
 
 ## Installation
 
