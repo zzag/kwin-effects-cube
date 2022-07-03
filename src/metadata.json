@@ -1,5 +1,11 @@
 {
     "KPlugin": {
+        "Authors": [
+            {
+                "Email": "contact@vladzahorodnii.com",
+                "Name": "Vlad Zahorodnii"
+            }
+        ],
         "Category": "Window Management",
         "Description": "Arrange desktops in a virtual cube",
         "EnabledByDefault": false,
