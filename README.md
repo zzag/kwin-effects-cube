@@ -11,6 +11,15 @@ Go to desktop effect settings, and enable the Cube effect. Once you've done that
 the Cube effect can be activated by pressing `Meta+C` shortcut.
 
 
+## Installation
+
+Arch Linux:
+
+```sh
+yay -S kwin-effects-cube-git
+```
+
+
 ## Building from Git
 
 You will need the following dependencies to build this effect:
