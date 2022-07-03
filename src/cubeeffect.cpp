@@ -51,6 +51,8 @@ void CubeEffect::reconfigure(ReconfigureFlags)
     CubeConfig::self()->read();
     setCubeFaceDisplacement(CubeConfig::cubeFaceDisplacement());
     setDistanceFactor(CubeConfig::distanceFactor() / 100.0);
+    setMouseInvertedX(CubeConfig::mouseInvertedX());
+    setMouseInvertedY(CubeConfig::mouseInvertedY());
 
     for (const ElectricBorder &border : qAsConst(m_borderActivate)) {
         effects->unreserveElectricBorder(border, this);
@@ -164,6 +166,32 @@ void CubeEffect::setDistanceFactor(qreal factor)
     if (m_distanceFactor != factor) {
         m_distanceFactor = factor;
         Q_EMIT distanceFactorChanged();
+    }
+}
+
+bool CubeEffect::mouseInvertedX() const
+{
+    return m_mouseInvertedX;
+}
+
+void CubeEffect::setMouseInvertedX(bool inverted)
+{
+    if (m_mouseInvertedX != inverted) {
+        m_mouseInvertedX = inverted;
+        Q_EMIT mouseInvertedXChanged();
+    }
+}
+
+bool CubeEffect::mouseInvertedY() const
+{
+    return m_mouseInvertedY;
+}
+
+void CubeEffect::setMouseInvertedY(bool inverted)
+{
+    if (m_mouseInvertedY != inverted) {
+        m_mouseInvertedY = inverted;
+        Q_EMIT mouseInvertedYChanged();
     }
 }
 

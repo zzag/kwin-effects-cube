@@ -18,6 +18,8 @@ class CubeEffect : public QuickSceneEffect
     Q_OBJECT
     Q_PROPERTY(qreal cubeFaceDisplacement READ cubeFaceDisplacement NOTIFY cubeFaceDisplacementChanged)
     Q_PROPERTY(qreal distanceFactor READ distanceFactor NOTIFY distanceFactorChanged)
+    Q_PROPERTY(bool mouseInvertedX READ mouseInvertedX NOTIFY mouseInvertedXChanged)
+    Q_PROPERTY(bool mouseInvertedY READ mouseInvertedY NOTIFY mouseInvertedYChanged)
 
 public:
     CubeEffect();
@@ -33,6 +35,12 @@ public:
     qreal distanceFactor() const;
     void setDistanceFactor(qreal factor);
 
+    bool mouseInvertedX() const;
+    void setMouseInvertedX(bool inverted);
+
+    bool mouseInvertedY() const;
+    void setMouseInvertedY(bool inverted);
+
 public Q_SLOTS:
     void activate();
     void deactivate();
@@ -41,6 +49,8 @@ public Q_SLOTS:
 Q_SIGNALS:
     void cubeFaceDisplacementChanged();
     void distanceFactorChanged();
+    void mouseInvertedXChanged();
+    void mouseInvertedYChanged();
 
 protected:
     QVariantMap initialProperties(EffectScreen *screen) override;
@@ -55,6 +65,8 @@ private:
     QList<ElectricBorder> m_touchBorderActivate;
     qreal m_cubeFaceDisplacement = 100;
     qreal m_distanceFactor = 1.5;
+    bool m_mouseInvertedX = true;
+    bool m_mouseInvertedY = true;
 };
 
 } // namespace KWin

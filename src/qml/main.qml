@@ -55,6 +55,8 @@ Item {
             anchors.fill: parent
             origin: cube
             camera: perspectiveCamera
+            xInvert: effect.mouseInvertedX
+            yInvert: effect.mouseInvertedY
         }
 
         Cube {
