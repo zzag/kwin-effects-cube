@@ -49,7 +49,7 @@ You will need the following dependencies to build this effect:
 On Arch Linux
 
 ```sh
-sudo pacman -S cmake extra-cmake-modules kwin
+sudo pacman -S cmake extra-cmake-modules kwin qt5-quick3d
 ```
 
 On Fedora
