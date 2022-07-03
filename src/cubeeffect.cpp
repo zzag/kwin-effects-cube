@@ -91,6 +91,9 @@ void CubeEffect::activate()
     if (effects->isScreenLocked()) {
         return;
     }
+    if (effects->numberOfDesktops() < 3) {
+        return;
+    }
 
     setRunning(true);
 }
