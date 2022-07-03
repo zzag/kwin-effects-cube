@@ -11,5 +11,7 @@
         <entry name="DistanceFactor" type="Double">
             <default>150</default>
         </entry>
+        <entry name="BorderActivate" type="IntList" />
+        <entry name="TouchBorderActivate" type="IntList" />
     </group>
 </kcfg>

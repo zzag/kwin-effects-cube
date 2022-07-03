@@ -25,6 +25,7 @@ public:
     void reconfigure(ReconfigureFlags flags) override;
     int requestedEffectChainPosition() const override;
     void grabbedKeyboardEvent(QKeyEvent *e) override;
+    bool borderActivated(ElectricBorder border) override;
 
     qreal cubeFaceDisplacement() const;
     void setCubeFaceDisplacement(qreal displacement);
@@ -50,6 +51,8 @@ private:
     QTimer *m_shutdownTimer;
     QAction *m_toggleAction = nullptr;
     QList<QKeySequence> m_toggleShortcut;
+    QList<ElectricBorder> m_borderActivate;
+    QList<ElectricBorder> m_touchBorderActivate;
     qreal m_cubeFaceDisplacement = 100;
     qreal m_distanceFactor = 1.5;
 };

@@ -7,5 +7,6 @@
         "License": "GPL",
         "Name": "Cube"
     },
-    "X-KDE-ConfigModule": "kwin_cube_config"
+    "X-KDE-ConfigModule": "kwin_cube_config",
+    "X-KWin-Border-Activate": true
 }

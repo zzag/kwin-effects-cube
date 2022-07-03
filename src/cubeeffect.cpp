@@ -51,6 +51,30 @@ void CubeEffect::reconfigure(ReconfigureFlags)
     CubeConfig::self()->read();
     setCubeFaceDisplacement(CubeConfig::cubeFaceDisplacement());
     setDistanceFactor(CubeConfig::distanceFactor() / 100.0);
+
+    for (const ElectricBorder &border : qAsConst(m_borderActivate)) {
+        effects->unreserveElectricBorder(border, this);
+    }
+
+    for (const ElectricBorder &border : qAsConst(m_touchBorderActivate)) {
+        effects->unregisterTouchBorder(border, m_toggleAction);
+    }
+
+    m_borderActivate.clear();
+    m_touchBorderActivate.clear();
+
+    const QList<int> activateBorders = CubeConfig::borderActivate();
+    for (const int &border : activateBorders) {
+        m_borderActivate.append(ElectricBorder(border));
+        effects->reserveElectricBorder(ElectricBorder(border), this);
+    }
+
+    const QList<int> touchActivateBorders = CubeConfig::touchBorderActivate();
+    for (const int &border : touchActivateBorders) {
+        m_touchBorderActivate.append(ElectricBorder(border));
+        effects->registerTouchBorder(ElectricBorder(border), m_toggleAction);
+    }
+
 }
 
 QVariantMap CubeEffect::initialProperties(EffectScreen *screen)
@@ -75,6 +99,15 @@ void CubeEffect::grabbedKeyboardEvent(QKeyEvent *e)
         }
     }
     QuickSceneEffect::grabbedKeyboardEvent(e);
+}
+
+bool CubeEffect::borderActivated(ElectricBorder border)
+{
+    if (m_borderActivate.contains(border)) {
+        toggle();
+        return true;
+    }
+    return false;
 }
 
 void CubeEffect::toggle()
