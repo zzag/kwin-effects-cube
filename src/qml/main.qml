@@ -57,11 +57,6 @@ Item {
             camera: perspectiveCamera
         }
 
-        DirectionalLight {
-            eulerRotation.x: -30
-            eulerRotation.y: -70
-        }
-
         Cube {
             id: cube
             faceDisplacement: effect.cubeFaceDisplacement
