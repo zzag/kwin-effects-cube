@@ -2,7 +2,8 @@
 
 ![Screenshot](data/screenshot.avif)
 
-This is a basic desktop cube effect for KWin.
+This is a basic desktop cube effect for KWin. It's primarily intended to help you
+impress your friends with what one can do on "Linux."
 
 
 ## How to use it
