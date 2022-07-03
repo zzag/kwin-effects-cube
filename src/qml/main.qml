@@ -71,13 +71,7 @@ Item {
 
     MouseArea {
         anchors.fill: view
-        onClicked: {
-            const result = view.pick(mouse.x, mouse.y);
-            if (result.objectHit && result.objectHit.desktop) {
-                KWinComponents.Workspace.currentVirtualDesktop = result.objectHit.desktop;
-                effect.deactivate();
-            }
-        }
+        onClicked: root.switchToSelected();
     }
 
     Keys.onEscapePressed: effect.deactivate();
