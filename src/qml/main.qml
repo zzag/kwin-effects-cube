@@ -6,7 +6,6 @@
 
 import QtQuick 2.15
 import QtQuick3D 1.15
-import QtQuick3D.Helpers 1.15
 import org.kde.kwin 3.0 as KWinComponents
 
 Item {
