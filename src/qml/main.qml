@@ -16,7 +16,6 @@ Item {
     required property QtObject effect
     required property QtObject targetScreen
 
-    readonly property bool debug: false
     property bool animationEnabled: false
 
     function start() {
@@ -42,17 +41,6 @@ Item {
         environment: SceneEnvironment {
             clearColor: "black"
             backgroundMode: SceneEnvironment.Color
-        }
-
-        Loader {
-            active: root.debug
-            sourceComponent: AxisHelper {}
-        }
-        Loader {
-            active: root.debug
-            sourceComponent: DebugView {
-                source: view
-            }
         }
 
         PerspectiveCamera {
