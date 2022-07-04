@@ -17,7 +17,7 @@
             <default>true</default>
         </entry>
         <entry name="MouseInvertedY" type="Bool">
-            <default>true</default>
+            <default>false</default>
         </entry>
     </group>
 </kcfg>
