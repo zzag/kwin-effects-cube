@@ -25,12 +25,11 @@ CubeEffectConfig::CubeEffectConfig(QWidget *parent, const QVariantList &args)
     addConfig(CubeConfig::self(), this);
 
     auto actionCollection = new KActionCollection(this, QStringLiteral("kwin"));
-
     actionCollection->setComponentDisplayName(i18n("KWin"));
     actionCollection->setConfigGroup(QStringLiteral("cube"));
     actionCollection->setConfigGlobal(true);
 
-    const QKeySequence defaultToggleShortcut = Qt::Key_Meta | Qt::Key_C;
+    const QKeySequence defaultToggleShortcut = Qt::META | Qt::Key_C;
     QAction *toggleAction = actionCollection->addAction(QStringLiteral("Cube"));
     toggleAction->setText(i18n("Toggle Cube"));
     toggleAction->setProperty("isConfigurationAction", true);
