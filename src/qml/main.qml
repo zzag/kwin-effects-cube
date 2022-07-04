@@ -47,7 +47,7 @@ Item {
 
         PerspectiveCamera {
             id: perspectiveCamera
-            position: Qt.vector3d(0, 0, Math.max(targetScreen.geometry.width, targetScreen.geometry.height) * effect.distanceFactor)
+            position: Qt.vector3d(0, 0, cube.faceDistance + (0.5 * cube.faceSize.height * Math.tan(fieldOfView * Math.PI / 180)) * effect.distanceFactor)
         }
 
         OrbitCameraController {
