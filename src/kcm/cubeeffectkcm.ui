@@ -39,12 +39,6 @@
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="tickPosition">
-        <enum>QSlider::TicksBelow</enum>
-       </property>
-       <property name="tickInterval">
-        <number>10</number>
-       </property>
       </widget>
      </item>
      <item row="1" column="0">
@@ -56,7 +50,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>less</string>
+        <string>Less</string>
        </property>
       </widget>
      </item>
@@ -69,7 +63,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>more</string>
+        <string>More</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -87,19 +81,6 @@
    </item>
    <item row="1" column="1">
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_closer">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>closer</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="0" colspan="2">
       <widget class="QSlider" name="kcfg_DistanceFactor">
        <property name="minimum">
@@ -111,11 +92,18 @@
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="tickPosition">
-        <enum>QSlider::TicksBelow</enum>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_closer">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <property name="tickInterval">
-        <number>10</number>
+       <property name="text">
+        <string>Closer</string>
        </property>
       </widget>
      </item>
@@ -128,7 +116,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>farther</string>
+        <string>Farther</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -136,16 +124,6 @@
       </widget>
      </item>
     </layout>
-   </item>
-   <item row="4" column="0" colspan="2">
-    <widget class="KShortcutsEditor" name="shortcutsEditor">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
    </item>
    <item row="2" column="0">
     <widget class="QLabel" name="label_Mouse">
@@ -165,6 +143,16 @@
     <widget class="QCheckBox" name="kcfg_MouseInvertedY">
      <property name="text">
       <string>Invert Y</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="KShortcutsEditor" name="shortcutsEditor">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
     </widget>
    </item>
