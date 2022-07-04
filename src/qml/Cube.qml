@@ -24,22 +24,18 @@ Node {
     }
 
     function rotateToLeft() {
-        const rotation = cube.eulerRotation;
-        rotation.y -= cube.baseAngle;
-        cube.setEulerRotation(rotation);
+        const index = selectedDesktop.x11DesktopNumber - 1;
+        cube.rotation = Quaternion.fromEulerAngles(0, cube.baseAngle * (index + 1), 0);
     }
 
     function rotateToRight() {
-        const rotation = cube.eulerRotation;
-        rotation.y += cube.baseAngle;
-        cube.setEulerRotation(rotation);
+        const index = selectedDesktop.x11DesktopNumber - 1;
+        cube.rotation = Quaternion.fromEulerAngles(0, cube.baseAngle * (index - 1), 0);
     }
 
     function rotateTo(desktop) {
         const index = desktop.x11DesktopNumber - 1;
-        const rotation = cube.eulerRotation;
-        rotation.y = cube.baseAngle * index;
-        cube.setEulerRotation(rotation);
+        cube.rotation = Quaternion.fromEulerAngles(0, cube.baseAngle * index, 0);
     }
 
     Repeater3D {

@@ -49,6 +49,7 @@ CubeEffect::CubeEffect()
 void CubeEffect::reconfigure(ReconfigureFlags)
 {
     CubeConfig::self()->read();
+    setAnimationDuration(animationTime(200));
     setCubeFaceDisplacement(CubeConfig::cubeFaceDisplacement());
     setDistanceFactor(CubeConfig::distanceFactor() / 100.0);
     setMouseInvertedX(CubeConfig::mouseInvertedX());
@@ -135,12 +136,34 @@ void CubeEffect::activate()
 
 void CubeEffect::deactivate()
 {
-    m_shutdownTimer->start(0);
+    if (m_shutdownTimer->isActive()) {
+        return;
+    }
+
+    const auto screenViews = views();
+    for (QuickSceneView *view : screenViews) {
+        QMetaObject::invokeMethod(view->rootItem(), "stop");
+    }
+
+    m_shutdownTimer->start(animationDuration());
 }
 
 void CubeEffect::realDeactivate()
 {
     setRunning(false);
+}
+
+int CubeEffect::animationDuration() const
+{
+    return m_animationDuration;
+}
+
+void CubeEffect::setAnimationDuration(int duration)
+{
+    if (m_animationDuration != duration) {
+        m_animationDuration = duration;
+        Q_EMIT animationDurationChanged();
+    }
 }
 
 qreal CubeEffect::cubeFaceDisplacement() const
