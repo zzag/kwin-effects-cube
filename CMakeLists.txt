@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(ECM REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/Modules)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 
 include(FeatureSummary)
 include(KDEInstallDirs)
@@ -33,7 +33,10 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     XmlGui
 )
 
-find_package(kwineffects REQUIRED COMPONENTS
+find_package(epoxy REQUIRED)
+find_package(XCB REQUIRED COMPONENTS XCB)
+
+find_package(KWinEffects 5.25.0 REQUIRED COMPONENTS
     kwineffects
 )
 

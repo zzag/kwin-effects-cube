@@ -23,7 +23,7 @@ target_link_libraries(kwin4_effect_cube
     KF5::I18n
     KF5::WindowSystem
 
-    kwineffects::kwineffects
+    KWinEffects::kwineffects
 )
 
 install(TARGETS kwin4_effect_cube DESTINATION ${PLUGIN_INSTALL_DIR}/kwin/effects/plugins/)
