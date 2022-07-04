@@ -4,7 +4,7 @@
 
 add_subdirectory(kcm)
 
-add_library(kwin4_effect_cube SHARED)
+kcoreaddons_add_plugin(kwin4_effect_cube INSTALL_NAMESPACE "kwin/effects/plugins/")
 target_sources(kwin4_effect_cube PRIVATE
     cubeeffect.cpp
     main.cpp
@@ -26,5 +26,4 @@ target_link_libraries(kwin4_effect_cube
     KWinEffects::kwineffects
 )
 
-install(TARGETS kwin4_effect_cube DESTINATION ${PLUGIN_INSTALL_DIR}/kwin/effects/plugins/)
 install(DIRECTORY qml DESTINATION ${KDE_INSTALL_DATADIR}/kwin/effects/cube)
