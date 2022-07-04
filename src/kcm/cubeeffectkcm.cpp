@@ -51,9 +51,7 @@ void CubeEffectConfig::save()
     KCModule::save();
     ui.shortcutsEditor->save();
 
-    OrgKdeKwinEffectsInterface interface(QStringLiteral("org.kde.KWin"),
-                                         QStringLiteral("/Effects"),
-                                         QDBusConnection::sessionBus());
+    OrgKdeKwinEffectsInterface interface(QStringLiteral("org.kde.KWin"), QStringLiteral("/Effects"), QDBusConnection::sessionBus());
     interface.reconfigureEffect(QStringLiteral("cube"));
 }
 

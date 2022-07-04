@@ -77,7 +77,6 @@ void CubeEffect::reconfigure(ReconfigureFlags)
         m_touchBorderActivate.append(ElectricBorder(border));
         effects->registerTouchBorder(ElectricBorder(border), m_toggleAction);
     }
-
 }
 
 QVariantMap CubeEffect::initialProperties(EffectScreen *screen)
