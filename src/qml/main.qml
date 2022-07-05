@@ -44,7 +44,7 @@ Item {
             id: colorSceneEnvironment
             active: effect.backgroundMode == CubeEffect.BackgroundMode.Color
             sourceComponent: SceneEnvironment {
-                clearColor: "black"
+                clearColor: effect.backgroundColor
                 backgroundMode: SceneEnvironment.Color
             }
         }

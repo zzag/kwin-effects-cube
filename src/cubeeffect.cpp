@@ -57,6 +57,7 @@ void CubeEffect::reconfigure(ReconfigureFlags)
     setMouseInvertedX(CubeConfig::mouseInvertedX());
     setMouseInvertedY(CubeConfig::mouseInvertedY());
     setSkybox(CubeConfig::skyBox());
+    setBackgroundColor(CubeConfig::backgroundColor());
 
     switch (CubeConfig::background()) {
     case CubeConfig::EnumBackground::Skybox:
@@ -253,6 +254,19 @@ void CubeEffect::setSkybox(const QUrl &url)
     if (m_skybox != url) {
         m_skybox = url;
         Q_EMIT skyboxChanged();
+    }
+}
+
+QColor CubeEffect::backgroundColor() const
+{
+    return m_backgroundColor;
+}
+
+void CubeEffect::setBackgroundColor(const QColor &color)
+{
+    if (m_backgroundColor != color) {
+        m_backgroundColor = color;
+        Q_EMIT backgroundColorChanged();
     }
 }
 

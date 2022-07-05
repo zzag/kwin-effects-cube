@@ -27,5 +27,8 @@
                 <choice name="Skybox" />
             </choices>
         </entry>
+        <entry name="BackgroundColor" type="Color">
+            <default>33,36,39</default>
+        </entry>
     </group>
 </kcfg>

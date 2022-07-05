@@ -156,11 +156,44 @@
    <item row="4" column="1">
     <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <widget class="QRadioButton" name="button_Color">
-       <property name="text">
-        <string>Plain color</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QRadioButton" name="button_Color">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Plain color:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="KColorButton" name="kcfg_BackgroundColor">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -209,6 +242,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>KColorButton</class>
+   <extends>QPushButton</extends>
+   <header>kcolorbutton.h</header>
+  </customwidget>
+  <customwidget>
    <class>KShortcutsEditor</class>
    <extends>QWidget</extends>
    <header>kshortcutseditor.h</header>
@@ -224,12 +262,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>202</x>
-     <y>203</y>
+     <x>242</x>
+     <y>229</y>
     </hint>
     <hint type="destinationlabel">
-     <x>264</x>
-     <y>208</y>
+     <x>446</x>
+     <y>235</y>
     </hint>
    </hints>
   </connection>
@@ -240,12 +278,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>193</x>
-     <y>208</y>
+     <x>242</x>
+     <y>229</y>
     </hint>
     <hint type="destinationlabel">
-     <x>379</x>
-     <y>211</y>
+     <x>356</x>
+     <y>234</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_Color</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>kcfg_BackgroundColor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>196</x>
+     <y>175</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>292</x>
+     <y>181</y>
     </hint>
    </hints>
   </connection>
