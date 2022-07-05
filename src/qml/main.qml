@@ -117,11 +117,11 @@ Item {
             }
 
             function rotateToLeft() {
-                rotation = effect.quaternionDotProduct(rotation, Quaternion.fromEulerAngles(0, -cube.baseAngle, 0));
+                rotation = effect.quaternionDotProduct(Quaternion.fromEulerAngles(0, -cube.baseAngle, 0), rotation);
             }
 
             function rotateToRight() {
-                rotation = effect.quaternionDotProduct(rotation, Quaternion.fromEulerAngles(0, cube.baseAngle, 0));
+                rotation = effect.quaternionDotProduct(Quaternion.fromEulerAngles(0, cube.baseAngle, 0), rotation);
             }
 
             function rotateTo(desktop) {
