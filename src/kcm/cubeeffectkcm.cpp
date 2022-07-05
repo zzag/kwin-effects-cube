@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2022 Vlad Zahorodnii <vlad.zahorodnii@kde.org>
 
-    SPDX-License-Identifier: GPL-3.0-only
+    SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
 
 #include "cubeeffectkcm.h"
@@ -15,6 +15,7 @@
 #include <KPluginFactory>
 
 #include <QAction>
+#include <QFileDialog>
 
 K_PLUGIN_CLASS(CubeEffectConfig)
 
@@ -38,6 +39,13 @@ CubeEffectConfig::CubeEffectConfig(QWidget *parent, const QVariantList &args)
 
     ui.shortcutsEditor->addCollection(actionCollection);
     connect(ui.shortcutsEditor, &KShortcutsEditor::keyChange, this, &CubeEffectConfig::markAsChanged);
+
+    connect(ui.button_SkyBox, &QPushButton::clicked, this, [this]() {
+        auto dialog = new QFileDialog(this);
+        dialog->setFileMode(QFileDialog::ExistingFile);
+        connect(dialog, &QFileDialog::fileSelected, ui.kcfg_SkyBox, &QLineEdit::setText);
+        dialog->open();
+    });
 }
 
 CubeEffectConfig::~CubeEffectConfig()

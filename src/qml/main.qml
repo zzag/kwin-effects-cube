@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2022 Vlad Zahorodnii <vlad.zahorodnii@kde.org>
 
-    SPDX-License-Identifier: GPL-3.0-only
+    SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
 
 import QtQuick 2.15
@@ -18,18 +18,20 @@ Item {
     property bool animationEnabled: false
 
     function start() {
-        cube.rotateTo(KWinComponents.Workspace.currentVirtualDesktop);
+        cameraController.rotateTo(KWinComponents.Workspace.currentVirtualDesktop);
         root.animationEnabled = true;
-        perspectiveCamera.state = "distant";
+        cameraController.state = "distant";
     }
 
     function stop() {
-        cube.rotateTo(KWinComponents.Workspace.currentVirtualDesktop);
-        perspectiveCamera.state = "close";
+        cameraController.rotateTo(KWinComponents.Workspace.currentVirtualDesktop);
+        cameraController.state = "close";
     }
 
     function switchToSelected() {
-        KWinComponents.Workspace.currentVirtualDesktop = cube.selectedDesktop;
+        const eulerRotation = effect.quaternionToEulerAngles(cameraController.rotation);
+        const desktop = cube.desktopAt(eulerRotation.y);
+        KWinComponents.Workspace.currentVirtualDesktop = desktop;
         effect.deactivate();
     }
 
@@ -37,54 +39,91 @@ Item {
         id: view
         anchors.fill: parent
 
-        environment: SceneEnvironment {
-            clearColor: "black"
-            backgroundMode: SceneEnvironment.Color
-        }
-
-        PerspectiveCamera {
-            id: perspectiveCamera
-            property real distanceScale: 1
-            state: "close"
-            position: Qt.vector3d(0, 0, cube.faceDistance * distanceScale + 0.5 * cube.faceSize.height * Math.tan(fieldOfView * Math.PI / 180))
-            states: [
-                State {
-                    name: "close"
-                    PropertyChanges {
-                        target: perspectiveCamera
-                        distanceScale: 1
-                    }
-                },
-                State {
-                    name: "distant"
-                    PropertyChanges {
-                        target: perspectiveCamera
-                        distanceScale: effect.distanceFactor
-                    }
-                }
-            ]
-            Behavior on distanceScale {
-                NumberAnimation { duration: effect.animationDuration; easing.type: Easing.OutCubic }
+        Loader {
+            id: staticColorSceneEnvironment
+            active: !effect.skyboxEnabled
+            sourceComponent: SceneEnvironment {
+                clearColor: "black"
+                backgroundMode: SceneEnvironment.Color
             }
         }
 
-        OrbitCameraController {
-            id: orbitController
-            anchors.fill: parent
-            origin: cube
-            camera: perspectiveCamera
-            xInvert: effect.mouseInvertedX
-            yInvert: effect.mouseInvertedY
+        Loader {
+            id: skyboxSceneEnvironment
+            active: effect.skyboxEnabled
+            sourceComponent: SceneEnvironment {
+                backgroundMode: SceneEnvironment.SkyBox
+                lightProbe: Texture {
+                    source: effect.skybox
+                }
+            }
         }
+
+        environment: {
+            if (skyboxSceneEnvironment.active) {
+                return skyboxSceneEnvironment.item;
+            } else {
+                return staticColorSceneEnvironment.item;
+            }
+        }
+
+        PerspectiveCamera { id: camera }
 
         Cube {
             id: cube
             faceDisplacement: effect.cubeFaceDisplacement
             faceSize: Qt.size(root.width, root.height)
+        }
+
+        CubeCameraController {
+            id: cameraController
+            anchors.fill: parent
+            state: "close"
+            camera: camera
+            xInvert: effect.mouseInvertedX
+            yInvert: effect.mouseInvertedY
+
+            states: [
+                State {
+                    name: "close"
+                    PropertyChanges {
+                        target: cameraController
+                        radius: cube.faceDistance + 0.5 * cube.faceSize.height * Math.tan(camera.fieldOfView * Math.PI / 180)
+                    }
+                },
+                State {
+                    name: "distant"
+                    PropertyChanges {
+                        target: cameraController
+                        radius: cube.faceDistance * effect.distanceFactor + 0.5 * cube.faceSize.height * Math.tan(camera.fieldOfView * Math.PI / 180)
+                    }
+                }
+            ]
 
             Behavior on rotation {
-                enabled: !orbitController.inputsNeedProcessing && root.animationEnabled
-                QuaternionAnimation { duration: effect.animationDuration; easing.type: Easing.OutCubic }
+                enabled: !cameraController.busy && root.animationEnabled
+                QuaternionAnimation {
+                    duration: effect.animationDuration
+                    easing.type: Easing.OutCubic
+                }
+            }
+            Behavior on radius {
+                NumberAnimation {
+                    duration: effect.animationDuration
+                    easing.type: Easing.OutCubic
+                }
+            }
+
+            function rotateToLeft() {
+                rotation = effect.quaternionDotProduct(rotation, Quaternion.fromEulerAngles(0, -90, 0));
+            }
+
+            function rotateToRight() {
+                rotation = effect.quaternionDotProduct(rotation, Quaternion.fromEulerAngles(0, 90, 0));
+            }
+
+            function rotateTo(desktop) {
+                rotation = Quaternion.fromEulerAngles(0, cube.desktopAzimuth(desktop), 0);
             }
         }
     }
@@ -95,8 +134,8 @@ Item {
     }
 
     Keys.onEscapePressed: effect.deactivate();
-    Keys.onLeftPressed: cube.rotateToLeft();
-    Keys.onRightPressed: cube.rotateToRight();
+    Keys.onLeftPressed: cameraController.rotateToLeft();
+    Keys.onRightPressed: cameraController.rotateToRight();
     Keys.onEnterPressed: root.switchToSelected();
     Keys.onReturnPressed: root.switchToSelected();
     Keys.onSpacePressed: root.switchToSelected();

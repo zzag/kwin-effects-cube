@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2022 Vlad Zahorodnii <vlad.zahorodnii@kde.org>
 
-    SPDX-License-Identifier: GPL-3.0-only
+    SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
 
 import QtQuick 2.15
@@ -15,27 +15,17 @@ Node {
     required property size faceSize
     readonly property real faceDistance: 0.5 * faceSize.width / Math.tan(baseAngle * Math.PI / 360) + faceDisplacement;
     readonly property real baseAngle: 360 / faceRepeater.count
-    readonly property QtObject selectedDesktop: {
-        let index = Math.round(eulerRotation.y / baseAngle) % faceRepeater.count;
+
+    function desktopAt(azimuth) {
+        let index = Math.round(azimuth / baseAngle) % faceRepeater.count;
         if (index < 0) {
             index += faceRepeater.count;
         }
         return faceRepeater.objectAt(index).desktop;
     }
 
-    function rotateToLeft() {
-        const index = selectedDesktop.x11DesktopNumber - 1;
-        cube.rotation = Quaternion.fromEulerAngles(0, cube.baseAngle * (index + 1), 0);
-    }
-
-    function rotateToRight() {
-        const index = selectedDesktop.x11DesktopNumber - 1;
-        cube.rotation = Quaternion.fromEulerAngles(0, cube.baseAngle * (index - 1), 0);
-    }
-
-    function rotateTo(desktop) {
-        const index = desktop.x11DesktopNumber - 1;
-        cube.rotation = Quaternion.fromEulerAngles(0, cube.baseAngle * index, 0);
+    function desktopAzimuth(desktop) {
+        return cube.baseAngle * (desktop.x11DesktopNumber - 1);
     }
 
     Repeater3D {
