@@ -66,7 +66,9 @@ void CubeEffectConfig::load()
 void CubeEffectConfig::save()
 {
     updateConfigFromUi();
+    CubeConfig::self()->save();
     KCModule::save();
+    updateUnmanagedState();
 
     OrgKdeKwinEffectsInterface interface(QStringLiteral("org.kde.KWin"), QStringLiteral("/Effects"), QDBusConnection::sessionBus());
     interface.reconfigureEffect(QStringLiteral("cube"));
