@@ -61,6 +61,7 @@ void CubeEffectConfig::load()
 {
     KCModule::load();
     updateUiFromConfig();
+    updateUnmanagedState();
 }
 
 void CubeEffectConfig::save()
@@ -78,6 +79,7 @@ void CubeEffectConfig::defaults()
 {
     KCModule::defaults();
     updateUiFromDefaultConfig();
+    updateUnmanagedState();
 }
 
 void CubeEffectConfig::updateConfigFromUi()
