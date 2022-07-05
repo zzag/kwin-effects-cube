@@ -14,7 +14,6 @@ Model {
     required property int index
     required property size faceSize
 
-    pickable: true
     source: "#Rectangle"
     materials: [
         DefaultMaterial {
