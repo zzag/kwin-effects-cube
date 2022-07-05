@@ -13,11 +13,11 @@ Node {
 
     property real faceDisplacement: 100
     required property size faceSize
-    readonly property real faceDistance: 0.5 * faceSize.width / Math.tan(baseAngle * Math.PI / 360) + faceDisplacement;
-    readonly property real baseAngle: 360 / faceRepeater.count
+    readonly property real faceDistance: 0.5 * faceSize.width / Math.tan(angleTick * Math.PI / 360) + faceDisplacement;
+    readonly property real angleTick: 360 / faceRepeater.count
 
     function desktopAt(azimuth) {
-        let index = Math.round(azimuth / baseAngle) % faceRepeater.count;
+        let index = Math.round(azimuth / angleTick) % faceRepeater.count;
         if (index < 0) {
             index += faceRepeater.count;
         }
@@ -25,7 +25,7 @@ Node {
     }
 
     function desktopAzimuth(desktop) {
-        return cube.baseAngle * (desktop.x11DesktopNumber - 1);
+        return cube.angleTick * (desktop.x11DesktopNumber - 1);
     }
 
     Repeater3D {
@@ -34,10 +34,10 @@ Node {
         delegate: CubeFace {
             faceSize: cube.faceSize
             scale: Qt.vector3d(faceSize.width / 100, faceSize.height / 100, 1)
-            eulerRotation.y: -cube.baseAngle * index
+            eulerRotation.y: -cube.angleTick * index
             position: {
                 const transform = Qt.matrix4x4();
-                transform.rotate(-cube.baseAngle * index, Qt.vector3d(0, 1, 0));
+                transform.rotate(-cube.angleTick * index, Qt.vector3d(0, 1, 0));
                 return transform.times(Qt.vector3d(0, 0, cube.faceDistance));
             }
         }
