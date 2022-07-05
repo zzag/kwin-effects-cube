@@ -147,23 +147,30 @@
     </widget>
    </item>
    <item row="4" column="0">
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="label_4">
      <property name="text">
-      <string>Skybox:</string>
+      <string>Background:</string>
      </property>
     </widget>
    </item>
    <item row="4" column="1">
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <widget class="QCheckBox" name="kcfg_SkyBoxEnabled">
+      <widget class="QRadioButton" name="button_Color">
        <property name="text">
-        <string>Enabled</string>
+        <string>Plain color</string>
        </property>
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QRadioButton" name="button_SkyBox">
+         <property name="text">
+          <string>Skybox:</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QLineEdit" name="kcfg_SkyBox">
          <property name="enabled">
@@ -175,7 +182,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="button_SkyBox">
+        <widget class="QPushButton" name="button_SelectSkyBox">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -211,34 +218,34 @@
  <resources/>
  <connections>
   <connection>
-   <sender>kcfg_SkyBoxEnabled</sender>
+   <sender>button_SkyBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>button_SelectSkyBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>202</x>
+     <y>203</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>208</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_SkyBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>kcfg_SkyBox</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>208</x>
-     <y>218</y>
+     <x>193</x>
+     <y>208</y>
     </hint>
     <hint type="destinationlabel">
-     <x>212</x>
-     <y>180</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>kcfg_SkyBoxEnabled</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>button_SkyBox</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>395</x>
-     <y>215</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>405</x>
-     <y>188</y>
+     <x>379</x>
+     <y>211</y>
     </hint>
    </hints>
   </connection>

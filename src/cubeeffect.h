@@ -23,9 +23,15 @@ class CubeEffect : public QuickSceneEffect
     Q_PROPERTY(bool mouseInvertedX READ mouseInvertedX NOTIFY mouseInvertedXChanged)
     Q_PROPERTY(bool mouseInvertedY READ mouseInvertedY NOTIFY mouseInvertedYChanged)
     Q_PROPERTY(QUrl skybox READ skybox NOTIFY skyboxChanged)
-    Q_PROPERTY(bool skyboxEnabled READ isSkyboxEnabled NOTIFY skyboxEnabledChanged)
+    Q_PROPERTY(BackgroundMode backgroundMode READ backgroundMode NOTIFY backgroundModeChanged)
 
 public:
+    enum class BackgroundMode {
+        Color,
+        Skybox,
+    };
+    Q_ENUM(BackgroundMode)
+
     CubeEffect();
 
     void reconfigure(ReconfigureFlags flags) override;
@@ -51,8 +57,8 @@ public:
     QUrl skybox() const;
     void setSkybox(const QUrl &url);
 
-    bool isSkyboxEnabled() const;
-    void setSkyboxEnabled(bool enabled);
+    BackgroundMode backgroundMode() const;
+    void setBackgroundMode(BackgroundMode mode);
 
     // TODO Plasma 6: Switch to quaternion.dotProduct() and quaternion.toEulerAngles()
     Q_INVOKABLE QQuaternion quaternionDotProduct(const QQuaternion &q1, const QQuaternion &q2);
@@ -70,7 +76,7 @@ Q_SIGNALS:
     void mouseInvertedYChanged();
     void animationDurationChanged();
     void skyboxChanged();
-    void skyboxEnabledChanged();
+    void backgroundModeChanged();
 
 protected:
     QVariantMap initialProperties(EffectScreen *screen) override;
@@ -86,10 +92,10 @@ private:
     QUrl m_skybox;
     qreal m_cubeFaceDisplacement = 100;
     qreal m_distanceFactor = 1.5;
+    BackgroundMode m_backgroundMode = BackgroundMode::Color;
     int m_animationDuration = 200;
     bool m_mouseInvertedX = true;
     bool m_mouseInvertedY = true;
-    bool m_skyboxEnabled = false;
 };
 
 } // namespace KWin

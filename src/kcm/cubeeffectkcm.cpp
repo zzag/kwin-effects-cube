@@ -40,12 +40,15 @@ CubeEffectConfig::CubeEffectConfig(QWidget *parent, const QVariantList &args)
     ui.shortcutsEditor->addCollection(actionCollection);
     connect(ui.shortcutsEditor, &KShortcutsEditor::keyChange, this, &CubeEffectConfig::markAsChanged);
 
-    connect(ui.button_SkyBox, &QPushButton::clicked, this, [this]() {
+    connect(ui.button_SelectSkyBox, &QPushButton::clicked, this, [this]() {
         auto dialog = new QFileDialog(this);
         dialog->setFileMode(QFileDialog::ExistingFile);
         connect(dialog, &QFileDialog::fileSelected, ui.kcfg_SkyBox, &QLineEdit::setText);
         dialog->open();
     });
+
+    connect(ui.button_Color, &QPushButton::toggled, this, &CubeEffectConfig::updateUnmanagedState);
+    connect(ui.button_SkyBox, &QPushButton::toggled, this, &CubeEffectConfig::updateUnmanagedState);
 }
 
 CubeEffectConfig::~CubeEffectConfig()
@@ -54,10 +57,16 @@ CubeEffectConfig::~CubeEffectConfig()
     ui.shortcutsEditor->undo();
 }
 
+void CubeEffectConfig::load()
+{
+    KCModule::load();
+    updateUiFromConfig();
+}
+
 void CubeEffectConfig::save()
 {
+    updateConfigFromUi();
     KCModule::save();
-    ui.shortcutsEditor->save();
 
     OrgKdeKwinEffectsInterface interface(QStringLiteral("org.kde.KWin"), QStringLiteral("/Effects"), QDBusConnection::sessionBus());
     interface.reconfigureEffect(QStringLiteral("cube"));
@@ -65,8 +74,58 @@ void CubeEffectConfig::save()
 
 void CubeEffectConfig::defaults()
 {
-    ui.shortcutsEditor->allDefault();
     KCModule::defaults();
+    updateUiFromDefaultConfig();
+}
+
+void CubeEffectConfig::updateConfigFromUi()
+{
+    CubeConfig::setBackground(uiBackground());
+    ui.shortcutsEditor->save();
+}
+
+void CubeEffectConfig::updateUiFromConfig()
+{
+    setUiBackground(CubeConfig::background());
+}
+
+void CubeEffectConfig::updateUiFromDefaultConfig()
+{
+    setUiBackground(defaultBackground());
+    ui.shortcutsEditor->allDefault();
+}
+
+int CubeEffectConfig::uiBackground() const
+{
+    if (ui.button_SkyBox->isChecked()) {
+        return CubeConfig::EnumBackground::Skybox;
+    } else {
+        return CubeConfig::EnumBackground::Color;
+    }
+}
+
+int CubeEffectConfig::defaultBackground() const
+{
+    return CubeConfig::EnumBackground::Color;
+}
+
+void CubeEffectConfig::setUiBackground(int mode)
+{
+    switch (mode) {
+    case CubeConfig::EnumBackground::Skybox:
+        ui.button_SkyBox->setChecked(true);
+        break;
+    case CubeConfig::EnumBackground::Color:
+    default:
+        ui.button_Color->setChecked(true);
+        break;
+    }
+}
+
+void CubeEffectConfig::updateUnmanagedState()
+{
+    unmanagedWidgetChangeState(CubeConfig::background() != uiBackground());
+    unmanagedWidgetDefaultState(CubeConfig::background() != defaultBackground());
 }
 
 #include "cubeeffectkcm.moc"

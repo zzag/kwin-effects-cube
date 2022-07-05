@@ -20,6 +20,8 @@ namespace KWin
 CubeEffect::CubeEffect()
     : m_shutdownTimer(new QTimer(this))
 {
+    qmlRegisterUncreatableType<CubeEffect>("org.kde.kwin.effect.cube", 1, 0, "CubeEffect", QStringLiteral("Cube cannot be created in QML"));
+
     m_shutdownTimer->setSingleShot(true);
     connect(m_shutdownTimer, &QTimer::timeout, this, &CubeEffect::realDeactivate);
     connect(effects, &EffectsHandler::screenAboutToLock, this, &CubeEffect::realDeactivate);
@@ -54,8 +56,17 @@ void CubeEffect::reconfigure(ReconfigureFlags)
     setDistanceFactor(CubeConfig::distanceFactor() / 100.0);
     setMouseInvertedX(CubeConfig::mouseInvertedX());
     setMouseInvertedY(CubeConfig::mouseInvertedY());
-    setSkyboxEnabled(CubeConfig::skyBoxEnabled());
     setSkybox(CubeConfig::skyBox());
+
+    switch (CubeConfig::background()) {
+    case CubeConfig::EnumBackground::Skybox:
+        setBackgroundMode(BackgroundMode::Skybox);
+        break;
+    case CubeConfig::EnumBackground::Color:
+    default:
+        setBackgroundMode(BackgroundMode::Color);
+        break;
+    }
 
     for (const ElectricBorder &border : qAsConst(m_borderActivate)) {
         effects->unreserveElectricBorder(border, this);
@@ -219,16 +230,16 @@ void CubeEffect::setMouseInvertedY(bool inverted)
     }
 }
 
-bool CubeEffect::isSkyboxEnabled() const
+CubeEffect::BackgroundMode CubeEffect::backgroundMode() const
 {
-    return m_skyboxEnabled;
+    return m_backgroundMode;
 }
 
-void CubeEffect::setSkyboxEnabled(bool enabled)
+void CubeEffect::setBackgroundMode(BackgroundMode mode)
 {
-    if (m_skyboxEnabled != enabled) {
-        m_skyboxEnabled = enabled;
-        Q_EMIT skyboxEnabledChanged();
+    if (m_backgroundMode != mode) {
+        m_backgroundMode = mode;
+        Q_EMIT backgroundModeChanged();
     }
 }
 

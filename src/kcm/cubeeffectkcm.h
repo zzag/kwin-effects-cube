@@ -19,9 +19,19 @@ public:
     ~CubeEffectConfig() override;
 
 public Q_SLOTS:
+    void load() override;
     void save() override;
     void defaults() override;
 
 private:
+    void updateUiFromConfig();
+    void updateUiFromDefaultConfig();
+    void updateConfigFromUi();
+    void updateUnmanagedState();
+
+    int uiBackground() const;
+    int defaultBackground() const;
+    void setUiBackground(int mode);
+
     ::Ui::CubeEffectConfig ui;
 };

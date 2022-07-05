@@ -7,6 +7,7 @@
 import QtQuick 2.15
 import QtQuick3D 1.15
 import org.kde.kwin 3.0 as KWinComponents
+import org.kde.kwin.effect.cube 1.0
 
 Item {
     id: root
@@ -40,8 +41,8 @@ Item {
         anchors.fill: parent
 
         Loader {
-            id: staticColorSceneEnvironment
-            active: !effect.skyboxEnabled
+            id: colorSceneEnvironment
+            active: effect.backgroundMode == CubeEffect.BackgroundMode.Color
             sourceComponent: SceneEnvironment {
                 clearColor: "black"
                 backgroundMode: SceneEnvironment.Color
@@ -50,7 +51,7 @@ Item {
 
         Loader {
             id: skyboxSceneEnvironment
-            active: effect.skyboxEnabled
+            active: effect.backgroundMode == CubeEffect.BackgroundMode.Skybox
             sourceComponent: SceneEnvironment {
                 backgroundMode: SceneEnvironment.SkyBox
                 lightProbe: Texture {
@@ -60,10 +61,11 @@ Item {
         }
 
         environment: {
-            if (skyboxSceneEnvironment.active) {
+            switch (effect.backgroundMode) {
+            case CubeEffect.BackgroundMode.Skybox:
                 return skyboxSceneEnvironment.item;
-            } else {
-                return staticColorSceneEnvironment.item;
+            case CubeEffect.BackgroundMode.Color:
+                return colorSceneEnvironment.item;
             }
         }
 

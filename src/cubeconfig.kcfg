@@ -19,9 +19,13 @@
         <entry name="MouseInvertedY" type="Bool">
             <default>false</default>
         </entry>
-        <entry name="SkyBoxEnabled" type="Bool">
-            <default>false</default>
-        </entry>
         <entry name="SkyBox" type="Url" />
+        <entry name="Background" type="Enum">
+            <default>Color</default>
+            <choices>
+                <choice name="Color" />
+                <choice name="Skybox" />
+            </choices>
+        </entry>
     </group>
 </kcfg>
