@@ -5,7 +5,9 @@
 This is a basic desktop cube effect for KWin. It's primarily intended to help you
 impress your friends with what one can do on "Linux."
 
-[Demo](https://www.youtube.com/watch?v=s6ERnS_ciKc)
+<p align="center">
+    <img src="https://raw.githubusercontent.com/zzag/kwin-effects-cube/main/data/demo.gif" />
+</p>
 
 
 ## How to use it
