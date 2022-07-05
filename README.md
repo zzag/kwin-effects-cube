@@ -23,6 +23,12 @@ Key navigation:
 - `Left` and `Right` arrow keys - rotate the cube left or right, respectively
 - `Enter`/`Space`/`Return` - switch to the currently viewed desktop
 
+Mouse navigation:
+
+- LMB click - switch to the currently viewed desktop
+- Press LMB and drag - rotate the cube
+- Wheel up and down - move the cube farther or closer, respectively
+
 
 ## Installation
 
