@@ -24,8 +24,6 @@ Item {
             wId: model.client.internalId
             x: model.client.x - targetScreen.geometry.x
             y: model.client.y - targetScreen.geometry.y
-            width: model.client.width
-            height: model.client.height
             z: model.client.stackingOrder
             visible: !model.client.minimized
         }
