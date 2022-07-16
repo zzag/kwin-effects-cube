@@ -34,10 +34,10 @@ Node {
         delegate: CubeFace {
             faceSize: cube.faceSize
             scale: Qt.vector3d(faceSize.width / 100, faceSize.height / 100, 1)
-            eulerRotation.y: -cube.angleTick * index
+            eulerRotation.y: cube.angleTick * index
             position: {
                 const transform = Qt.matrix4x4();
-                transform.rotate(-cube.angleTick * index, Qt.vector3d(0, 1, 0));
+                transform.rotate(cube.angleTick * index, Qt.vector3d(0, 1, 0));
                 return transform.times(Qt.vector3d(0, 0, cube.faceDistance));
             }
         }

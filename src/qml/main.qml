@@ -90,14 +90,14 @@ Item {
                     name: "close"
                     PropertyChanges {
                         target: cameraController
-                        radius: cube.faceDistance + 0.5 * cube.faceSize.height * Math.tan(camera.fieldOfView * Math.PI / 180)
+                        radius: cube.faceDistance + 0.5 * cube.faceSize.height / Math.tan(0.5 * camera.fieldOfView * Math.PI / 180)
                     }
                 },
                 State {
                     name: "distant"
                     PropertyChanges {
                         target: cameraController
-                        radius: cube.faceDistance * effect.distanceFactor + 0.5 * cube.faceSize.height * Math.tan(camera.fieldOfView * Math.PI / 180)
+                        radius: cube.faceDistance * effect.distanceFactor + 0.5 * cube.faceSize.height / Math.tan(0.5 * camera.fieldOfView * Math.PI / 180)
                     }
                 }
             ]
