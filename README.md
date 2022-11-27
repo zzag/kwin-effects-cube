@@ -46,6 +46,9 @@ You will need the following dependencies to build this effect:
 * CMake
 * any C++14 enabled compiler
 * Qt
+    - qtbase
+    - qtdeclarative
+    - qtquick3d
 * libkwineffects
 * KDE Frameworks 5:
     - Config
@@ -71,9 +74,10 @@ sudo dnf install cmake extra-cmake-modules kf5-kconfig-devel \
 On Ubuntu
 
 ```sh
-sudo apt install cmake extra-cmake-modules kwin-dev \
+sudo apt install cmake extra-cmake-modules gettext kwin-dev \
     libkf5config-dev libkf5configwidgets-dev libkf5coreaddons-dev \
-    libkf5windowsystem-dev libkf5globalaccel-dev libkf5xmlgui-dev qtbase5-dev
+    libkf5windowsystem-dev libkf5globalaccel-dev libkf5xmlgui-dev qtbase5-dev \
+    qtdeclarative5-dev
 ```
 
 After you installed all the required dependencies, you can build
@@ -87,4 +91,18 @@ cmake -B build -S . \
     -DCMAKE_INSTALL_PREFIX=/usr
 cmake --build build --parallel
 cmake --install build
+```
+
+## Building QtQuick 3D from source code
+
+Note that some distributions (e.g. Ubuntu or Fedora) don't package QtQuick 3D.
+If you use such a distro, you will have to build QtQuick 3D from source code.
+
+Go to https://download.qt.io/official_releases/qt/ and download qtquick3d source
+tarball (it's in `submodules/` folder), unpack it and run the following commands
+
+```
+qmake qtquick3d.pro
+make
+make install
 ```
