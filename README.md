@@ -74,10 +74,9 @@ sudo dnf install cmake extra-cmake-modules kf5-kconfig-devel kf5-kcoreaddons-dev
 On Ubuntu
 
 ```sh
-sudo apt install cmake extra-cmake-modules gettext kwin-dev \
-    libkf5config-dev libkf5configwidgets-dev libkf5coreaddons-dev \
-    libkf5windowsystem-dev libkf5globalaccel-dev libkf5xmlgui-dev qtbase5-dev \
-    qtdeclarative5-dev
+sudo apt install cmake extra-cmake-modules gettext kwin-dev libkf5config-dev \
+    libkf5configwidgets-dev libkf5coreaddons-dev libkf5globalaccel-dev
+    libkf5windowsystem-dev libkf5xmlgui-dev qtbase5-dev qtdeclarative5-dev
 ```
 
 After you installed all the required dependencies, you can build
