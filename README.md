@@ -66,9 +66,9 @@ sudo pacman -S cmake extra-cmake-modules kwin qt5-quick3d
 On Fedora
 
 ```sh
-sudo dnf install cmake extra-cmake-modules kf5-kconfig-devel \
-    kf5-kcoreaddons-devel kf5-kwindowsystem-devel kf5-globalaccel-devel \
-    kf5-xmlgui-devel kwin-devel qt5-qtbase-devel
+sudo dnf install cmake extra-cmake-modules kf5-kconfig-devel kf5-kcoreaddons-devel \
+    kf5-kglobalaccel-devel kf5-ki18n-devel kf5-kwindowsystem-devel kf5-kxmlgui-devel \
+    kwin-devel libepoxy-devel qt5-qtbase-devel
 ```
 
 On Ubuntu
