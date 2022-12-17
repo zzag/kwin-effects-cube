@@ -98,7 +98,7 @@ Note that some distributions (e.g. Ubuntu or Fedora) don't package QtQuick 3D.
 If you use such a distro, you will have to build QtQuick 3D from source code.
 
 Go to https://download.qt.io/official_releases/qt/ and download qtquick3d source
-tarball (it's in `submodules/` folder), unpack it and run the following commands
+tarball (it's in `submodules/` folder) for 5.15, unpack it and run the following commands
 
 ```
 qmake qtquick3d.pro
