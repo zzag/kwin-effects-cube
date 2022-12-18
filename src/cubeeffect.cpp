@@ -33,7 +33,6 @@ CubeEffect::CubeEffect()
     KGlobalAccel::self()->setDefaultShortcut(m_toggleAction, {defaultToggleShortcut});
     KGlobalAccel::self()->setShortcut(m_toggleAction, {defaultToggleShortcut});
     m_toggleShortcut = KGlobalAccel::self()->shortcut(m_toggleAction);
-    effects->registerGlobalShortcut({defaultToggleShortcut}, m_toggleAction);
     connect(m_toggleAction, &QAction::triggered, this, &CubeEffect::toggle);
 
     connect(KGlobalAccel::self(), &KGlobalAccel::globalShortcutChanged, this, [this](QAction *action, const QKeySequence &seq) {
@@ -153,9 +152,11 @@ void CubeEffect::deactivate()
         return;
     }
 
-    const auto screenViews = views();
-    for (QuickSceneView *view : screenViews) {
-        QMetaObject::invokeMethod(view->rootItem(), "stop");
+    const QList<EffectScreen *> screens = effects->screens();
+    for (EffectScreen *screen : screens) {
+        if (QuickSceneView *view = viewForScreen(screen)) {
+            QMetaObject::invokeMethod(view->rootItem(), "stop");
+        }
     }
 
     m_shutdownTimer->start(animationDuration());
