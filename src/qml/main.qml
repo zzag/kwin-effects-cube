@@ -105,6 +105,7 @@ Item {
             Behavior on rotation {
                 enabled: !cameraController.busy && root.animationEnabled
                 QuaternionAnimation {
+                    id: rotationAnimation
                     duration: effect.animationDuration
                     easing.type: Easing.OutCubic
                 }
@@ -117,14 +118,23 @@ Item {
             }
 
             function rotateToLeft() {
+                if (rotationAnimation.running) {
+                    return;
+                }
                 rotation = effect.quaternionDotProduct(Quaternion.fromEulerAngles(0, -cube.angleTick, 0), rotation);
             }
 
             function rotateToRight() {
+                if (rotationAnimation.running) {
+                    return;
+                }
                 rotation = effect.quaternionDotProduct(Quaternion.fromEulerAngles(0, cube.angleTick, 0), rotation);
             }
 
             function rotateTo(desktop) {
+                if (rotationAnimation.running) {
+                    return;
+                }
                 rotation = Quaternion.fromEulerAngles(0, cube.desktopAzimuth(desktop), 0);
             }
         }
