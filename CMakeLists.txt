@@ -36,7 +36,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
 find_package(epoxy REQUIRED)
 find_package(XCB REQUIRED COMPONENTS XCB)
 
-find_package(KWinEffects 5.25.0 REQUIRED COMPONENTS
+find_package(KWinEffects 5.27.0 REQUIRED COMPONENTS
     kwineffects
 )
 
