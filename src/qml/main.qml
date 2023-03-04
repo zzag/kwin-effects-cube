@@ -4,10 +4,10 @@
     SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
 
-import QtQuick 2.15
-import QtQuick3D 1.15
-import org.kde.kwin 3.0 as KWinComponents
-import org.kde.kwin.effect.cube 1.0
+import QtQuick
+import QtQuick3D
+import org.kde.kwin as KWinComponents
+import org.kde.kwin.effect.cube
 
 Item {
     id: root

@@ -12,16 +12,16 @@ target_sources(kwin4_effect_cube PRIVATE
 kconfig_add_kcfg_files(kwin4_effect_cube cubeconfig.kcfgc)
 
 target_link_libraries(kwin4_effect_cube
-    Qt::Core
-    Qt::Gui
-    Qt::Quick
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Quick
 
-    KF5::ConfigCore
-    KF5::ConfigGui
-    KF5::CoreAddons
-    KF5::GlobalAccel
-    KF5::I18n
-    KF5::WindowSystem
+    KF6::ConfigCore
+    KF6::ConfigGui
+    KF6::CoreAddons
+    KF6::GlobalAccel
+    KF6::I18n
+    KF6::WindowSystem
 
     KWinEffects::kwineffects
 )
