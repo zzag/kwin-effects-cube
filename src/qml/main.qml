@@ -4,10 +4,10 @@
     SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
 
-import QtQuick 2.15
-import QtQuick3D 1.15
-import org.kde.kwin 3.0 as KWinComponents
-import org.kde.kwin.effect.cube 1.0
+import QtQuick
+import QtQuick3D
+import org.kde.kwin as KWinComponents
+import org.kde.kwin.effect.cube
 
 Item {
     id: root
@@ -30,7 +30,7 @@ Item {
     }
 
     function switchToSelected() {
-        const eulerRotation = effect.quaternionToEulerAngles(cameraController.rotation);
+        const eulerRotation = cameraController.rotation.toEulerAngles();
         const desktop = cube.desktopAt(eulerRotation.y);
         KWinComponents.Workspace.currentDesktop = desktop;
         effect.deactivate();
@@ -121,14 +121,14 @@ Item {
                 if (rotationAnimation.running) {
                     return;
                 }
-                rotation = effect.quaternionDotProduct(Quaternion.fromEulerAngles(0, -cube.angleTick, 0), rotation);
+                rotation = Quaternion.fromEulerAngles(0, -cube.angleTick, 0).times(rotation);
             }
 
             function rotateToRight() {
                 if (rotationAnimation.running) {
                     return;
                 }
-                rotation = effect.quaternionDotProduct(Quaternion.fromEulerAngles(0, cube.angleTick, 0), rotation);
+                rotation = Quaternion.fromEulerAngles(0, cube.angleTick, 0).times(rotation);
             }
 
             function rotateTo(desktop) {

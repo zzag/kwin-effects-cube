@@ -4,8 +4,8 @@
     SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
 
-import QtQuick 2.15
-import QtQuick3D 1.15
+import QtQuick
+import QtQuick3D
 
 Item {
     id: root
@@ -83,7 +83,7 @@ Item {
     }
 
     function updateCamera() {
-        const eulerRotation = effect.quaternionToEulerAngles(root.rotation);
+        const eulerRotation = root.rotation.toEulerAngles();
         const theta = (eulerRotation.x + 90) * Math.PI / 180;
         const phi = eulerRotation.y * Math.PI / 180;
 
@@ -115,7 +115,7 @@ Item {
 
         function processInput() {
             if (useMouse) {
-                const eulerRotation = effect.quaternionToEulerAngles(root.rotation);
+                const eulerRotation = root.rotation.toEulerAngles();
 
                 const pixelDelta = Qt.vector2d(lastPos.x - currentPos.x,
                                                lastPos.y - currentPos.y);

@@ -44,6 +44,7 @@ CubeEffect::CubeEffect()
 
     setSource(QUrl::fromLocalFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kwin/effects/cube/qml/main.qml"))));
 
+
     reconfigure(ReconfigureAll);
 }
 
@@ -269,16 +270,6 @@ void CubeEffect::setBackgroundColor(const QColor &color)
         m_backgroundColor = color;
         Q_EMIT backgroundColorChanged();
     }
-}
-
-QQuaternion CubeEffect::quaternionDotProduct(const QQuaternion &q1, const QQuaternion &q2)
-{
-    return q1 * q2;
-}
-
-QVector3D CubeEffect::quaternionToEulerAngles(const QQuaternion &q)
-{
-    return q.toEulerAngles();
 }
 
 } // namespace KWin

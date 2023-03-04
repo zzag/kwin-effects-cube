@@ -64,10 +64,6 @@ public:
     QColor backgroundColor() const;
     void setBackgroundColor(const QColor &color);
 
-    // TODO Plasma 6: Switch to quaternion.dotProduct() and quaternion.toEulerAngles()
-    Q_INVOKABLE QQuaternion quaternionDotProduct(const QQuaternion &q1, const QQuaternion &q2);
-    Q_INVOKABLE QVector3D quaternionToEulerAngles(const QQuaternion &q);
-
 public Q_SLOTS:
     void activate();
     void deactivate();
