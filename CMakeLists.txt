@@ -29,6 +29,7 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons
     GlobalAccel
     I18n
+    KCMUtils
     WindowSystem
     XmlGui
 )

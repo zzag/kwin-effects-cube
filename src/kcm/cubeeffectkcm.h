@@ -15,7 +15,7 @@ class CubeEffectConfig : public KCModule
     Q_OBJECT
 
 public:
-    explicit CubeEffectConfig(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
+    CubeEffectConfig(QObject *parent, const KPluginMetaData &data, const QVariantList &args);
     ~CubeEffectConfig() override;
 
 public Q_SLOTS:

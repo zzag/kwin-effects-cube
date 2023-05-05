@@ -15,5 +15,6 @@ target_link_libraries(kwin_cube_config
     KF6::CoreAddons
     KF6::GlobalAccel
     KF6::I18n
+    KF6::KCMUtils
     KF6::XmlGui
 )
