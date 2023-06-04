@@ -42,6 +42,7 @@ For users who are using Plasma 5
 ```sh
 yay -S kwin-effects-cube
 ```
+Hint: Please reload kwin after installation to make this effect work.
 
 ## Building from Git
 
