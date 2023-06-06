@@ -34,10 +34,14 @@ Mouse navigation:
 
 Arch Linux:
 
+For users who are using KF6/Plasma 6
 ```sh
 yay -S kwin-effects-cube-git
 ```
-
+For users who are using Plasma 5
+```sh
+yay -S kwin-effects-cube
+```
 
 ## Building from Git
 
