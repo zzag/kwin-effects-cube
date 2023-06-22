@@ -3,7 +3,7 @@
 ![Screenshot](data/screenshot.avif)
 
 This is a basic desktop cube effect for KWin. It's primarily intended to help you
-impress your friends with what one can do on "Linux."
+impress your friends with what one can do on "Linux"
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/zzag/kwin-effects-cube/main/data/demo.gif" />
