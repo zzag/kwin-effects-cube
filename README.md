@@ -79,7 +79,7 @@ On Ubuntu
 
 ```sh
 sudo apt install cmake extra-cmake-modules gettext kwin-dev libkf5config-dev \
-    libkf5configwidgets-dev libkf5coreaddons-dev libkf5globalaccel-dev
+    libkf5configwidgets-dev libkf5coreaddons-dev libkf5globalaccel-dev \
     libkf5windowsystem-dev libkf5xmlgui-dev qtbase5-dev qtdeclarative5-dev
 ```
 
